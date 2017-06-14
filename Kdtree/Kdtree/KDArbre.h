@@ -12,10 +12,17 @@ class KDArbre
 {
 public:
 	KDArbre();
-	KDArbre(list<Point> listePt);
+	KDArbre(KDNoeud* racine);
 	~KDArbre();
+
+	KDNoeud* getRacine() { return racine; };
+	void setRacine(KDNoeud* kdracine) { racine = kdracine; };
+
+	KDNoeud* creerArbre(KDNoeud* racine, vector<Point> listePt);
+	void afficherArbre(KDNoeud* racine);
 
 private:
 	KDNoeud* racine;
+	KDNoeud* kdprecedent;
 };
 

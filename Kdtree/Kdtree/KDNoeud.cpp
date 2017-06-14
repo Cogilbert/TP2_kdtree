@@ -2,6 +2,13 @@
 #include "KDNoeud.h"
 
 
+Point::Point(int xx, int yy)
+{
+	x = xx;
+	y = yy;
+}
+
+
 KDNoeud::KDNoeud()
 {
 	kdnGauche = NULL;

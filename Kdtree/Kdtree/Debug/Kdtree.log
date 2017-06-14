@@ -1,0 +1,10 @@
+﻿  KDArbre.cpp
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(25): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(42): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(69): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(108): warning C4244: 'argument' : conversion de 'double' en 'unsigned int', perte possible de données
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(110): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(135): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(147): warning C4244: 'argument' : conversion de 'double' en 'unsigned int', perte possible de données
+  Kdtree.vcxproj -> C:\Users\Locotonto29\Desktop\EFREI\M2 - Chicoutimi\Session 3\SDD\TP\TP2\Kdtree\Kdtree\Debug\Kdtree.exe
+  Kdtree.vcxproj -> C:\Users\Locotonto29\Desktop\EFREI\M2 - Chicoutimi\Session 3\SDD\TP\TP2\Kdtree\Kdtree\Debug\Kdtree.pdb (Full PDB)
