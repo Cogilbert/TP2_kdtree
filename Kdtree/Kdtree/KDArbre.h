@@ -15,14 +15,15 @@ public:
 	KDArbre(KDNoeud* racine);
 	~KDArbre();
 
+	//Getter et Setter
 	KDNoeud* getRacine() { return racine; };
 	void setRacine(KDNoeud* kdracine) { racine = kdracine; };
 
-	KDNoeud* creerArbre(KDNoeud* racine, vector<Point> listePt);
+	//Fonctions
+	KDNoeud* creerArbre(KDNoeud* racine, vector<Point> listePt, bool trieX);
+	Point ppvoisin(Point p, KDNoeud* racine);	
 	void afficherArbre(KDNoeud* racine);
 
 private:
 	KDNoeud* racine;
-	KDNoeud* kdprecedent;
 };
-
