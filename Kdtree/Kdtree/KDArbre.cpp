@@ -218,7 +218,7 @@ KDNoeud* KDArbre::creerArbre(KDNoeud* racine, vector<Point> listePt, bool trieX)
 }
 
 //Fonction retournant le point le plus proche du point que l'on lui entre en paramètre
-Point KDArbre::ppvoisin(Point p, KDNoeud* racine)
+Point KDArbre::noeudVoisin(Point p, KDNoeud* racine)
 {
 	//On compare d'abord selon x
 	if (racine->getPoint().x <= p.x)
@@ -233,7 +233,7 @@ Point KDArbre::ppvoisin(Point p, KDNoeud* racine)
 				if (racine->getKDDroite()->getKDDroite() != NULL)
 				{
 					//Si oui récursivité
-					ppvoisin(p, racine->getKDDroite()->getKDDroite());
+					noeudVoisin(p, racine->getKDDroite()->getKDDroite());
 				}
 				else
 				{
@@ -246,7 +246,7 @@ Point KDArbre::ppvoisin(Point p, KDNoeud* racine)
 				if (racine->getKDDroite()->getKDGauche() != NULL)
 				{
 					//Si oui récursivité
-					ppvoisin(p, racine->getKDDroite()->getKDGauche());
+					noeudVoisin(p, racine->getKDDroite()->getKDGauche());
 				}
 				else
 				{
@@ -267,7 +267,7 @@ Point KDArbre::ppvoisin(Point p, KDNoeud* racine)
 			{
 				if (racine->getKDGauche()->getKDDroite() != NULL)
 				{
-					ppvoisin(p, racine->getKDGauche()->getKDDroite());
+					noeudVoisin(p, racine->getKDGauche()->getKDDroite());
 				}
 				else
 				{
@@ -278,7 +278,7 @@ Point KDArbre::ppvoisin(Point p, KDNoeud* racine)
 			{
 				if (racine->getKDGauche()->getKDGauche() != NULL)
 				{
-					ppvoisin(p, racine->getKDGauche()->getKDGauche());
+					noeudVoisin(p, racine->getKDGauche()->getKDGauche());
 				}
 				else
 				{
@@ -291,6 +291,23 @@ Point KDArbre::ppvoisin(Point p, KDNoeud* racine)
 			return racine->getPoint();
 		}
 	}
+}
+
+Point KDArbre::ppVoisin(Point centre, Point voisin, vector<Point> listePt)
+{
+	float rayon = sqrt((centre.x - voisin.x)*(centre.x - voisin.x) + (centre.y - voisin.y)*(centre.y - voisin.y));
+	Point ppvoisin = voisin;
+
+	for (int i = 0; i < listePt.size(); i++)
+	{
+		float dist = sqrt((centre.x - listePt[i].x)*(centre.x - listePt[i].x) + (centre.y - listePt[i].y)*(centre.y - listePt[i].y));
+		if (dist < rayon)
+		{
+			rayon = sqrt((centre.x - listePt[i].x)*(centre.x - listePt[i].x) + (centre.y - listePt[i].y)*(centre.y - listePt[i].y));
+			ppvoisin = listePt[i];
+		}
+	}
+	return ppvoisin;
 }
 
 //Fonction affichant l'arbre en pre-order

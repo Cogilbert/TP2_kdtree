@@ -1,4 +1,11 @@
-﻿  Kdtree.cpp
-c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdtree.cpp(56): warning C4715: 'menuPPVoisin' : les chemins de contrôle ne retournent pas tous une valeur
+﻿  KDArbre.cpp
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(136): warning C4244: 'argument' : conversion de 'double' en 'unsigned int', perte possible de données
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(137): warning C4244: 'argument' : conversion de 'double' en 'unsigned int', perte possible de données
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(179): warning C4244: 'argument' : conversion de 'double' en 'unsigned int', perte possible de données
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(298): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(301): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(303): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(306): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\locotonto29\desktop\efrei\m2 - chicoutimi\session 3\sdd\tp\tp2\kdtree\kdtree\kdtree\kdarbre.cpp(294): warning C4715: 'KDArbre::noeudVoisin' : les chemins de contrôle ne retournent pas tous une valeur
   Kdtree.vcxproj -> C:\Users\Locotonto29\Desktop\EFREI\M2 - Chicoutimi\Session 3\SDD\TP\TP2\Kdtree\Kdtree\Debug\Kdtree.exe
   Kdtree.vcxproj -> C:\Users\Locotonto29\Desktop\EFREI\M2 - Chicoutimi\Session 3\SDD\TP\TP2\Kdtree\Kdtree\Debug\Kdtree.pdb (Full PDB)

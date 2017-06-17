@@ -110,7 +110,7 @@ int main()
 		cout << "Taper le chiffre correspondant : ";
 		if (testEntree(0, 2, rep))
 		{
-			Point voisin;
+			Point centre;
 			switch (rep)
 			{
 			case 1:
@@ -142,21 +142,25 @@ int main()
 				cout << "2. [(12,8),(6,5),(4,8),(9,4),(0,16),(8,8),(7,1)]" << endl;
 				if (testEntree(1, 2, rep3))
 				{
-					if (rep2 == 1)
+					if (rep3 == 1)
 					{
+						Point voisin;
 						system("cls");
-						voisin = menuPPVoisin(test);
+						centre = menuPPVoisin(test);
+						voisin = a->ppVoisin(centre, a->noeudVoisin(centre, test), listePt1);
 						system("cls");
-						cout << "Le voisin le plus proche de (" << voisin.x << "," << voisin.y << ") est (";
-						cout << a->ppvoisin(voisin, test).x << "," << a->ppvoisin(voisin, test).y << ")" << endl << endl;
+						cout << "Le voisin le plus proche de (" << centre.x << "," << centre.y << ") dans [(1,10),(2,5),(3,7),(4,4),(5,9),(6,1)] est (";
+						cout << voisin.x << "," << voisin.y << ")" << endl << endl;
 					}
 					else
 					{
+						Point voisin;
 						system("cls");
-						voisin = menuPPVoisin(test2);
+						centre = menuPPVoisin(test2);
+						voisin = a->ppVoisin(centre, a->noeudVoisin(centre, test2), listePt2);
 						system("cls");
-						cout << "Le voisin le plus proche de (" << voisin.x << "," << voisin.y << ") est (";
-						cout << a->ppvoisin(voisin, test2).x << "," << a->ppvoisin(voisin, test2).y << ")" << endl << endl;
+						cout << "Le voisin le plus proche de (" << centre.x << "," << centre.y << ") dans [(12,8),(6,5),(4,8),(9,4),(0,16),(8,8),(7,1)] est (";
+						cout << voisin.x << "," << voisin.y << ")" << endl << endl;
 					}
 				}
 				break;
