@@ -21,8 +21,9 @@ public:
 
 	//Fonctions
 	KDNoeud* creerArbre(KDNoeud* racine, vector<Point> listePt, bool trieX);
-	Point noeudVoisin(Point p, KDNoeud* racine);
-	Point ppVoisin(Point centre, Point voisin, vector<Point> listePt);
+	KDNoeud* insererNoeud(Point p, KDNoeud* racine);
+	Point ppVoisin(Point p, int dist, KDNoeud* emetteur, KDNoeud* racine, KDNoeud* enfant);
+	void ppVoisinDescendant(Point p, int dist, KDNoeud* racine, KDNoeud* depart, KDNoeud* emetteur);
 	void afficherArbre(KDNoeud* racine);
 
 private:

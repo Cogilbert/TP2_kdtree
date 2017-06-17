@@ -41,8 +41,8 @@ void afficherTitre() {
 Point menuPPVoisin(KDNoeud* racine)
 {
 	int x, y;
-	cout << "Définissez le point pour lequel vous voulez chercher le plus proche voisin : " << endl;
-	cout << "Choisissez des valeurs entières entre -50 et 50 : " << endl;
+	cout << "Definissez le point pour lequel vous voulez chercher le plus proche voisin : " << endl;
+	cout << "Choisissez des valeurs entieres entre -50 et 50 : " << endl;
 	cout << "\tComposante x : ";
 	if (testEntree(-50, 50, x))
 	{
@@ -110,7 +110,7 @@ int main()
 		cout << "Taper le chiffre correspondant : ";
 		if (testEntree(0, 2, rep))
 		{
-			Point centre;
+			Point ptChoisi, voisin;
 			switch (rep)
 			{
 			case 1:
@@ -144,22 +144,23 @@ int main()
 				{
 					if (rep3 == 1)
 					{
-						Point voisin;
 						system("cls");
-						centre = menuPPVoisin(test);
-						voisin = a->ppVoisin(centre, a->noeudVoisin(centre, test), listePt1);
-						system("cls");
-						cout << "Le voisin le plus proche de (" << centre.x << "," << centre.y << ") dans [(1,10),(2,5),(3,7),(4,4),(5,9),(6,1)] est (";
+						ptChoisi = menuPPVoisin(test);
+						KDNoeud* noeudChoisi = a->insererNoeud(ptChoisi, test);
+						voisin = a->ppVoisin(ptChoisi, 0, noeudChoisi->getParent(), NULL, NULL);
+						//system("cls");
+						cout << "Le voisin le plus proche de (" << ptChoisi.x << "," << ptChoisi.y << ") dans [(1,10),(2,5),(3,7),(4,4),(5,9),(6,1)] est (";
 						cout << voisin.x << "," << voisin.y << ")" << endl << endl;
 					}
 					else
 					{
-						Point voisin;
 						system("cls");
-						centre = menuPPVoisin(test2);
-						voisin = a->ppVoisin(centre, a->noeudVoisin(centre, test2), listePt2);
-						system("cls");
-						cout << "Le voisin le plus proche de (" << centre.x << "," << centre.y << ") dans [(12,8),(6,5),(4,8),(9,4),(0,16),(8,8),(7,1)] est (";
+						ptChoisi = menuPPVoisin(test2);
+						KDNoeud* noeudChoisi = a->insererNoeud(ptChoisi, test2);
+						voisin = a->ppVoisin(ptChoisi, 0, noeudChoisi->getParent(), NULL, NULL);
+						//system("cls");
+						cout << "coucou " << noeudChoisi->getParent()->getPoint().x << "," << noeudChoisi->getParent()->getPoint().y << endl;
+						cout << "Le voisin le plus proche de (" << ptChoisi.x << "," << ptChoisi.y << ") dans [(12,8),(6,5),(4,8),(9,4),(0,16),(8,8),(7,1)] est (";
 						cout << voisin.x << "," << voisin.y << ")" << endl << endl;
 					}
 				}

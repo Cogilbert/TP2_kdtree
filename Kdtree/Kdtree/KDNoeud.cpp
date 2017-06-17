@@ -15,9 +15,10 @@ KDNoeud::KDNoeud()
 	kdnDroite = NULL;
 }
 
-KDNoeud::KDNoeud(Point p, KDNoeud* kdnG, KDNoeud* kdnD)
+KDNoeud::KDNoeud(Point p, KDNoeud* pa, KDNoeud* kdnG, KDNoeud* kdnD)
 {
 	point = p;
+	parent = pa;
 	kdnGauche = kdnG;
 	kdnDroite = kdnD;
 }

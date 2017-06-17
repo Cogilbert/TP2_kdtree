@@ -34,7 +34,7 @@ class KDNoeud
 {
 public:
 	KDNoeud();
-	KDNoeud(Point p, KDNoeud* kdnGauche, KDNoeud* kdnDroite);
+	KDNoeud(Point p, KDNoeud* parent, KDNoeud* kdnGauche, KDNoeud* kdnDroite);
 	~KDNoeud();
 
 	//Getter & Setter
@@ -43,9 +43,12 @@ public:
 	void setKDGauche(KDNoeud* g) { kdnGauche = g; };
 	KDNoeud* getKDDroite() { return kdnDroite; };
 	void setKDDroite(KDNoeud* d) { kdnDroite = d; };
+	KDNoeud* getParent() { return parent; };
+	void setParent(KDNoeud* p) { parent = p; };
 
 private:
 	Point point;
+	KDNoeud* parent;
 	KDNoeud* kdnGauche;
 	KDNoeud* kdnDroite;
 };

@@ -46,8 +46,8 @@ KDNoeud* KDArbre::creerArbre(KDNoeud* racine, vector<Point> listePt, bool trieX)
 			//On vérifie si la racine est NULL
 			if (racine == NULL)
 			{
-				racine = new KDNoeud(listePt[(listePt.size() / 2) - 1], NULL, NULL);
-				test = new KDNoeud(listePt[(listePt.size() / 2) - 1], NULL, NULL);
+				racine = new KDNoeud(listePt[(listePt.size() / 2) - 1], NULL, NULL, NULL);
+				test = new KDNoeud(listePt[(listePt.size() / 2) - 1], NULL, NULL, NULL);
 
 				//On sépare la liste de point en deux listes distinctes pour les enfants gauches et droites
 				vector<Point> listeGauche, listeDroite;
@@ -89,7 +89,7 @@ KDNoeud* KDArbre::creerArbre(KDNoeud* racine, vector<Point> listePt, bool trieX)
 					}
 				}
 
-				KDNoeud* n = new KDNoeud(listePt[(listePt.size() / 2) - 1], NULL, NULL);
+				KDNoeud* n = new KDNoeud(listePt[(listePt.size() / 2) - 1], racine, NULL, NULL);
 
 				//On regarde selon quelle composante de Points on compare le nouveau noeud pour savoir à quel enfant on l'attache 
 				if (trieX == true)
@@ -133,8 +133,8 @@ KDNoeud* KDArbre::creerArbre(KDNoeud* racine, vector<Point> listePt, bool trieX)
 			//On vérifie si la racine est NULL
 			if (racine == NULL)
 			{
-				racine = new KDNoeud(listePt[floor(listePt.size() / 2)], NULL, NULL);
-				test = new KDNoeud(listePt[floor(listePt.size() / 2)], NULL, NULL);
+				racine = new KDNoeud(listePt[floor(listePt.size() / 2)], NULL, NULL, NULL);
+				test = new KDNoeud(listePt[floor(listePt.size() / 2)], NULL, NULL, NULL);
 
 				//On sépare la liste de point en deux listes distinctes pour les enfants gauches et droites
 				vector<Point> listeGauche, listeDroite;
@@ -176,7 +176,7 @@ KDNoeud* KDArbre::creerArbre(KDNoeud* racine, vector<Point> listePt, bool trieX)
 					}
 				}
 
-				KDNoeud* n = new KDNoeud(listePt[floor(listePt.size() / 2)], NULL, NULL);
+				KDNoeud* n = new KDNoeud(listePt[floor(listePt.size() / 2)], racine, NULL, NULL);
 
 				//On regarde selon quelle composante de Points on compare le nouveau noeud pour savoir à quel enfant on l'attache 
 				if (trieX == true)
@@ -217,27 +217,32 @@ KDNoeud* KDArbre::creerArbre(KDNoeud* racine, vector<Point> listePt, bool trieX)
 	return test;
 }
 
-//Fonction retournant le point le plus proche du point que l'on lui entre en paramètre
-Point KDArbre::noeudVoisin(Point p, KDNoeud* racine)
+
+//Fonction retournant le nouveau noeud inserer dans le kd-tree ayant comme point celui entré par l'utilisateur
+KDNoeud* KDArbre::insererNoeud(Point p, KDNoeud* racine)
 {
+	KDNoeud* newNoeud;
+
 	//On compare d'abord selon x
-	if (racine->getPoint().x <= p.x)
+	if (racine->getPoint().x < p.x)
 	{
 		//On regarde s'il existe un Noeud à droite de la racine
 		if (racine->getKDDroite() != NULL)
 		{
 			//Si oui on compare selon y
-			if (racine->getKDDroite()->getPoint().y <= p.y)
+			if (racine->getKDDroite()->getPoint().y < p.y)
 			{
 				//On regarde si il y a un parent à droite
 				if (racine->getKDDroite()->getKDDroite() != NULL)
 				{
 					//Si oui récursivité
-					noeudVoisin(p, racine->getKDDroite()->getKDDroite());
+					insererNoeud(p, racine->getKDDroite()->getKDDroite());
 				}
 				else
 				{
-					return racine->getKDDroite()->getPoint();
+					newNoeud = new KDNoeud(p, racine->getKDDroite(), NULL, NULL);
+					racine->getKDDroite()->setKDDroite(newNoeud);
+					return newNoeud;
 				}
 			}
 			else
@@ -246,68 +251,128 @@ Point KDArbre::noeudVoisin(Point p, KDNoeud* racine)
 				if (racine->getKDDroite()->getKDGauche() != NULL)
 				{
 					//Si oui récursivité
-					noeudVoisin(p, racine->getKDDroite()->getKDGauche());
+					insererNoeud(p, racine->getKDDroite()->getKDGauche());
 				}
 				else
 				{
-					return racine->getKDDroite()->getPoint();
+					newNoeud = new KDNoeud(p, racine->getKDDroite(), NULL, NULL);
+					racine->getKDDroite()->setKDGauche(newNoeud);
+					return newNoeud;
 				}
 			}
 		}
 		else
 		{
-			return racine->getPoint();
+			newNoeud = new KDNoeud(p, racine, NULL, NULL);
+			racine->setKDDroite(newNoeud);
+			return newNoeud;
 		}
 	}
 	else //On répete le même principe que précédemment mais à gauche de la racine
 	{
 		if (racine->getKDGauche() != NULL)
 		{
-			if (racine->getKDGauche()->getPoint().y <= p.y)
+			if (racine->getKDGauche()->getPoint().y < p.y)
 			{
 				if (racine->getKDGauche()->getKDDroite() != NULL)
 				{
-					noeudVoisin(p, racine->getKDGauche()->getKDDroite());
+					insererNoeud(p, racine->getKDGauche()->getKDDroite());
 				}
 				else
 				{
-					return racine->getKDGauche()->getPoint();
+					newNoeud = new KDNoeud(p, racine->getKDGauche(), NULL, NULL);
+					racine->getKDGauche()->setKDDroite(newNoeud);
+					return newNoeud;
 				}
 			}
 			else
 			{
 				if (racine->getKDGauche()->getKDGauche() != NULL)
 				{
-					noeudVoisin(p, racine->getKDGauche()->getKDGauche());
+					insererNoeud(p, racine->getKDGauche()->getKDGauche());
 				}
 				else
 				{
-					return racine->getKDGauche()->getPoint();
+					newNoeud = new KDNoeud(p, racine->getKDGauche(), NULL, NULL);
+					racine->getKDGauche()->setKDGauche(newNoeud);
+					return newNoeud;
 				}
 			}
 		}
 		else
 		{
-			return racine->getPoint();
+			newNoeud = new KDNoeud(p, racine, NULL, NULL);
+			racine->setKDGauche(newNoeud);
+			return newNoeud;
 		}
 	}
 }
 
-Point KDArbre::ppVoisin(Point centre, Point voisin, vector<Point> listePt)
-{
-	float rayon = sqrt((centre.x - voisin.x)*(centre.x - voisin.x) + (centre.y - voisin.y)*(centre.y - voisin.y));
-	Point ppvoisin = voisin;
 
-	for (int i = 0; i < listePt.size(); i++)
+//Fonction retournant le Point plus proche voisin de celui de l'utilisateur
+//Point p : point de l'utilisateur
+//int dist : distance entre p et un autre point d'un noeud
+//KDNoeud* racine : noeud racine du sous arbre
+//KDNoeud* emetteur : noeud précedent
+//KDNoeud* enfant : noeud enfant de la branche où nous nous situons du noeud racine
+Point KDArbre::ppVoisin(Point p, int dist, KDNoeud* racine, KDNoeud* emetteur, KDNoeud* enfant)
+{
+	int rayon = 100000; 
+		
+	if (racine != NULL)
 	{
-		float dist = sqrt((centre.x - listePt[i].x)*(centre.x - listePt[i].x) + (centre.y - listePt[i].y)*(centre.y - listePt[i].y));
-		if (dist < rayon)
+		rayon = pow((p.x - racine->getPoint().x), 2) + pow((p.y - racine->getPoint().y), 2);
+	}
+
+	if (dist == 0)
+	{
+		dist = rayon;
+		ppVoisin(p, dist, racine->getParent(), racine, racine);
+	}
+	else if (rayon < dist) //Si la nouvelle distance est plus petite que la précédente on descend dans l'autre branche
+	{
+		if ((racine->getKDGauche()->getPoint().x == enfant->getPoint().x) && (racine->getKDGauche()->getPoint().y == enfant->getPoint().y))
 		{
-			rayon = sqrt((centre.x - listePt[i].x)*(centre.x - listePt[i].x) + (centre.y - listePt[i].y)*(centre.y - listePt[i].y));
-			ppvoisin = listePt[i];
+			ppVoisinDescendant(p, rayon, racine->getKDDroite(), racine, racine);
+		}
+		else
+		{
+			ppVoisinDescendant(p, rayon, racine->getKDGauche(), racine, racine);
 		}
 	}
-	return ppvoisin;
+	else
+	{
+		return emetteur->getPoint();
+	}	
+}
+
+//Fonction descendant dans une branche afin de trouver une distance plus petite
+//Point p : point de l'utilisateur
+//int dist : distance entre p et un autre point d'un noeud
+//KDNoeud* racine : noeud racine du sous arbre
+//KDNoeud* sortie : noeud parent du premier noeud où on a commencé à descendre dans la branche
+//KDNoeud* emetteur : noeud précedent
+void KDArbre::ppVoisinDescendant(Point p, int dist, KDNoeud* racine, KDNoeud* sortie, KDNoeud* emetteur)
+{
+	int rayon = pow((p.x - racine->getPoint().x), 2) + pow((p.y - racine->getPoint().y), 2);
+
+	if (rayon < dist)
+	{
+		if (racine->getKDGauche() != NULL)
+		{ 
+			ppVoisinDescendant(p, rayon, racine->getKDGauche(), sortie, racine);
+		}
+		if (racine->getKDDroite() != NULL)
+		{
+			ppVoisinDescendant(p, rayon, racine->getKDDroite(), sortie, racine);
+		}
+		
+		ppVoisin(p, rayon, sortie->getParent(), racine, sortie);
+	}
+	else
+	{
+		ppVoisin(p, dist, sortie->getParent(), emetteur, sortie);
+	}
 }
 
 //Fonction affichant l'arbre en pre-order
